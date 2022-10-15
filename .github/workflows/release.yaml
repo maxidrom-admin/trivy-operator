@@ -58,8 +58,8 @@ jobs:
           # arm64v8
           wget -q -O /tmp/kube-bench.tar.gz https://github.com/aquasecurity/kube-bench/releases/download/v${{env.BENCH}}/kube-bench_${{env.BENCH}}_linux_arm64.tar.gz
           tar -C /tmp -xf /tmp/kube-bench.tar.gz
-          mkdir docker/kube-bench-scnner/arm64
-          cp /tmp/kube-bench docker/kube-bench-scnner/arm64
+          mkdir docker/kube-bench-scnner/arm64v8
+          cp /tmp/kube-bench docker/kube-bench-scnner/arm64v8
           rm -rf /tmp/kube-bench.tar.gz /tmp/kube-bench
 
       - name: Build amd64 trivy-operator
@@ -96,7 +96,7 @@ jobs:
           tags: devopstales/kube-bench-scnner:${{github.ref_name}}-amd64
           push: true
 
-      - name: Build arm64v8 trivy
+      - name: Build arm64v8 kube-bench-scnner
         uses: docker/build-push-action@v2
         with:
           context: docker/kube-bench-scnner/
